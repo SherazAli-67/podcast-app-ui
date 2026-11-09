@@ -1,0 +1,31 @@
+class NumberConstant {
+  static const horizontalPadding = 25.0;
+  static const screenTopPadding = 16.0;
+  static const cardRadius = 15.0;
+  static const albumRadius = 16.0;
+  static const buttonRadius = 15.0;
+  static const lyricsButtonRadius = 10.0;
+  static const hardShadowOffset = 4.0;
+  static const borderWidth = 0.5;
+  static const sectionGap = 15.0;
+  static const sectionHeaderGap = 10.0;
+  static const storyCardGap = 10.0;
+  static const albumCardGap = 12.0;
+  static const moodCardGap = 12.0;
+  static const storyCardAspectRatio = 101 / 134;
+  static const storyAvatarSize = 59.0;
+  static const storyRingSize = 69.0;
+  static const albumAspectRatio = 1.0;
+  static const searchFieldHeight = 56.0;
+  static const signUpButtonHeight = 64.0;
+  static const bottomNavIconGap = 8.0;
+  static const landingContentGap = 50.0;
+  static const playerControlsGap = 30.0;
+  static const episodeRowGap = 21.0;
+  static const episodeThumbSize = 56.0;
+  static const episodeThumbRadius = 5.0;
+  static const circleActionPadding = 10.0;
+  static const waveformBarWidth = 4.0;
+  static const waveformBarGap = 2.5;
+  static const designWidth = 375.0;
+}
