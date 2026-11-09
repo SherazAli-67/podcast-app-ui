@@ -20,6 +20,11 @@ class NumberConstant {
   static const signUpButtonHeight = 64.0;
   static const bottomNavIconGap = 8.0;
   static const landingContentGap = 50.0;
+  static const landingContentTopPadding = 10.0;
+  static const landingTermsBottomPadding = 16.0;
+  static const landingButtonBorderWidth = 1.0;
+  static const landingButtonContentGap = 10.0;
+  static const landingSpiralAngle = 0.773;
   static const playerControlsGap = 30.0;
   static const episodeRowGap = 21.0;
   static const episodeThumbSize = 56.0;

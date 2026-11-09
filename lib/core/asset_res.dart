@@ -3,6 +3,7 @@ class AssetRes {
   static const _iconsPath = 'assets/icons/';
 
   static const landingPageHeader = '${_imagesPath}landing_page_header.png';
+  static const landingIllustration = '${_imagesPath}landing_illustration.png';
   static const scaffoldBgImg = '${_imagesPath}scaffokd_bg_img.jpg';
   static const avatarPeep = '${_imagesPath}avatar_peep.png';
 
@@ -50,4 +51,7 @@ class AssetRes {
   static const icStoryRing = '${_iconsPath}ic_story_ring.svg';
   static const titleUnderline = '${_iconsPath}title_underline.svg';
   static const avatarDots = '${_iconsPath}avatar_dots.svg';
+  static const icLandingSpiral = '${_iconsPath}ic_landing_spiral.svg';
+  static const icLandingStar = '${_iconsPath}ic_landing_star.svg';
+  static const icSignUpArrow = '${_iconsPath}ic_sign_up_arrow.svg';
 }
