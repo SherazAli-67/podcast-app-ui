@@ -12,6 +12,10 @@
 .swiftpm/
 migrate_working_dir/
 
+# Accidental local dirs created from URL paths (e.g. Figma MCP asset URLs)
+/http:/
+/https:/
+
 # IntelliJ related
 *.iml
 *.ipr
