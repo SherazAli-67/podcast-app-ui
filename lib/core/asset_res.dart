@@ -4,6 +4,29 @@ class AssetRes {
 
   static const landingPageHeader = '${_imagesPath}landing_page_header.png';
   static const scaffoldBgImg = '${_imagesPath}scaffokd_bg_img.jpg';
+  static const avatarPeep = '${_imagesPath}avatar_peep.png';
+
+  static const storyTwentyOnePilots = '${_imagesPath}story_twenty_one_pilots.png';
+  static const storyArRahman = '${_imagesPath}story_ar_rahman.png';
+  static const storyLinkinPark = '${_imagesPath}story_linkin_park.png';
+  static const storyBlurryface = '${_imagesPath}story_blurryface.png';
+
+  static const albumDawnFm = '${_imagesPath}album_dawn_fm.png';
+  static const albumTrench = '${_imagesPath}album_trench.png';
+  static const albumGangsOfWasseypur = '${_imagesPath}album_gangs_of_wasseypur.png';
+
+  static const moodListening = '${_imagesPath}mood_listening.png';
+  static const moodPlaying = '${_imagesPath}mood_playing.png';
+  static const moodHeadphone = '${_imagesPath}mood_headphone.png';
+
+  static const playerStarboy = '${_imagesPath}player_starboy.png';
+
+  static const episodeNature1 = '${_imagesPath}episode_nature_1.jpg';
+  static const episodeNature2 = '${_imagesPath}episode_nature_2.jpg';
+  static const episodeNature3 = '${_imagesPath}episode_nature_3.jpg';
+  static const episodeNature4 = '${_imagesPath}episode_nature_4.jpg';
+  static const episodeNature5 = '${_imagesPath}episode_nature_5.jpg';
+  static const episodeNature6 = '${_imagesPath}episode_nature_6.png';
 
   static const dots = '${_iconsPath}dots.svg';
   static const icAiStar = '${_iconsPath}ic_ai_star.svg';
@@ -24,4 +47,5 @@ class AssetRes {
   static const icSearch = '${_iconsPath}ic_search.svg';
   static const icSettings = '${_iconsPath}ic_settings.svg';
   static const morningDivider = '${_iconsPath}morning_divider.svg';
+  static const icStoryRing = '${_iconsPath}ic_story_ring.svg';
 }
