@@ -42,6 +42,13 @@ class NumberConstant {
   static const episodeRowGap = 21.0;
   static const episodeThumbSize = 56.0;
   static const episodeThumbRadius = 5.0;
+  static const episodeContentGap = 13.0;
+  static const episodeMetaGap = 5.0;
+  static const episodeActionsGap = 8.0;
+  static const episodeMetaDotSize = 3.0;
+  static const episodeActiveMorePadding = 8.0;
+  static const listBottomPadding = 16.0;
+  static const moreIconRotation = -1.5708;
   static const circleActionPadding = 10.0;
   static const waveformBarWidth = 4.0;
   static const waveformBarGap = 2.5;
