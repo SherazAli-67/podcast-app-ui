@@ -48,4 +48,6 @@ class AssetRes {
   static const icSettings = '${_iconsPath}ic_settings.svg';
   static const morningDivider = '${_iconsPath}morning_divider.svg';
   static const icStoryRing = '${_iconsPath}ic_story_ring.svg';
+  static const titleUnderline = '${_iconsPath}title_underline.svg';
+  static const avatarDots = '${_iconsPath}avatar_dots.svg';
 }

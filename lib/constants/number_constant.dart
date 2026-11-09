@@ -28,4 +28,10 @@ class NumberConstant {
   static const waveformBarWidth = 4.0;
   static const waveformBarGap = 2.5;
   static const designWidth = 375.0;
+  static const bottomNavHorizontalPadding = 30.0;
+  static const bottomNavTopPadding = 12.0;
+  static const bottomNavBottomPadding = 8.0;
+  static const bottomNavItemGap = 8.0;
+  static const selectedNavCirclePadding = 12.0;
+  static const unselectedNavCirclePadding = 12.0;
 }
