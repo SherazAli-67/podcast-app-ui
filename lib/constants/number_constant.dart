@@ -39,4 +39,16 @@ class NumberConstant {
   static const bottomNavItemGap = 8.0;
   static const selectedNavCirclePadding = 12.0;
   static const unselectedNavCirclePadding = 12.0;
+  static const homeHeaderGap = 10.0;
+  static const homeBodyBottomPadding = 16.0;
+  static const searchRowGap = 5.0;
+  static const searchFieldPadding = 16.0;
+  static const storyCardInnerGap = 5.0;
+  static const storyCardPadding = 12.0;
+  static const albumTitleGap = 12.0;
+  static const albumPlayInset = 10.0;
+  static const avatarSize = 49.0;
+  static const storyWidthFactor = 0.312;
+  static const albumWidthFactor = 0.348;
+  static const storyImageSize = 59.0;
 }
