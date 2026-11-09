@@ -184,6 +184,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           spacing: NumberConstant.albumTitleGap,
           children: [
+
             AspectRatio(
               aspectRatio: NumberConstant.albumAspectRatio,
               child: HardShadowBox(
