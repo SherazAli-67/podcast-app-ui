@@ -78,4 +78,12 @@ class NumberConstant {
   static const homePressAnimMs = 100;
   static const welcomeEntranceMs = 700;
   static const welcomeSlideOffset = 0.05;
+  static const playerWaveformLoopMs = 900;
+  static const playerWaveformAmp = 0.22;
+  static const playerFavoriteScale = 1.12;
+  static const playerControlAnimMs = 180;
+  static const playerPlayScale = 0.94;
+  static const playerAlbumBreatheMs = 2800;
+  static const playerAlbumBreatheDelta = 0.03;
+  static const playerPauseIconSize = 24.0;
 }
