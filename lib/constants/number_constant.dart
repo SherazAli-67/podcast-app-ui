@@ -71,4 +71,9 @@ class NumberConstant {
   static const storyWidthFactor = 0.312;
   static const albumWidthFactor = 0.348;
   static const storyImageSize = 59.0;
+  static const homeItemAnimMs = 360;
+  static const homeStaggerDelayMs = 45;
+  static const homeItemSlideOffset = 12.0;
+  static const homePressScale = 0.96;
+  static const homePressAnimMs = 100;
 }

@@ -15,6 +15,7 @@ import 'package:podcast_app_ui/presentation/widgets/app_bottom_nav.dart';
 import 'package:podcast_app_ui/presentation/widgets/dotted_scaffold_background.dart';
 import 'package:podcast_app_ui/presentation/widgets/hard_shadow_box.dart';
 import 'package:podcast_app_ui/presentation/widgets/section_header.dart';
+import 'package:podcast_app_ui/presentation/widgets/staggered_pressable.dart';
 import 'package:podcast_app_ui/routing/router.dart';
 import 'package:provider/provider.dart';
 
@@ -79,10 +80,13 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: .start,
                 children: [
                   //goodMorning, homeGreeting,
+                  Text(StringConst.goodMorning, style: AppTextStyles.homeGreeting,),
+                  SvgPicture.asset(AssetRes.morningDivider)
                   //morningDivider
                 ],
               ),
               //letsPlayMusic, homeSubtitle
+              Text(StringConst.letsPlayMusic, style: AppTextStyles.homeSubtitle,)
             ],
           ),
         ),
@@ -92,9 +96,9 @@ class HomeScreen extends StatelessWidget {
           children: [
 
             //svg: avatarDots
-            Positioned(right: 28, top: -10, child: const SizedBox()),
+            Positioned(right: 28, top: -10, child: SvgPicture.asset(AssetRes.avatarDots)),
             //profileAvatar, widthHeight: avatarSize, fit.cover
-            ClipOval(child: const SizedBox()),
+            ClipOval(child: Image.asset(AssetRes.profile_avatar, width: NumberConstant.avatarSize, height: NumberConstant.avatarSize,)),
           ],
         ),
       ],
@@ -102,32 +106,35 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildSearchField() {
-    return SizedBox();
-    /*return HardShadowBox(
+    return HardShadowBox(
       padding: .symmetric(horizontal: NumberConstant.searchFieldPadding, vertical: NumberConstant.searchFieldPadding),
       child: Row(
         spacing: NumberConstant.searchRowGap,
         children: [
           //icSearch
+          SvgPicture.asset(AssetRes.icSearch),
           //searchHint, searchHint
-          Expanded(child: const SizedBox()),
+          Expanded(child: Text(StringConst.searchHint, style: AppTextStyles.searchHint,)),
         ],
       ),
-    );*/
+    );
   }
 
   Widget _buildStoriesSection(BuildContext context, double storyWidth) {
     return Column(
       spacing: NumberConstant.sectionHeaderGap,
       children: [
-        // SectionHeader(title: StringConst.stories, actionLabel: StringConst.viewAll, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
+        SectionHeader(title: StringConst.stories, actionLabel: StringConst.viewAll, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
         SizedBox(
           height: storyWidth / NumberConstant.storyCardAspectRatio,
           child: ListView.separated(
             scrollDirection: .horizontal,
             itemCount: AppData.stories.length,
             separatorBuilder: (_, _) => const SizedBox(width: NumberConstant.storyCardGap),
-            itemBuilder: (context, index) => _buildStoryCard(AppData.stories[index], storyWidth),
+            itemBuilder: (context, index) => StaggeredPressable(
+              index: index,
+              child: _buildStoryCard(AppData.stories[index], storyWidth),
+            ),
           ),
         ),
       ],
@@ -135,7 +142,6 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildStoryCard(StoryModel story, double width) {
-    return SizedBox();
     return SizedBox(
       width: width,
       child: HardShadowBox(
@@ -148,11 +154,13 @@ class HomeScreen extends StatelessWidget {
               alignment: .center,
               children: [
                 //icStoryRing,
+                SvgPicture.asset(AssetRes.icStoryRing),
                 //story.image, widthHeight: storyImageSize, fit.cover
-                ClipOval(child: const SizedBox()),
+                ClipOval(child: Image.asset(story.image, width: NumberConstant.storyImageSize,)),
               ],
             ),
             //story.title, style: cardTitle, textAlign.center
+            Text(story.title, style: AppTextStyles.cardTitle, textAlign: .center)
 
           ],
         ),
@@ -165,55 +173,58 @@ class HomeScreen extends StatelessWidget {
       spacing: NumberConstant.sectionHeaderGap,
       crossAxisAlignment: .start,
       children: [
-       /* SectionHeader(
+        SectionHeader(
           title: StringConst.recentlyPlayed,
           actionLabel: StringConst.viewMore,
           onActionTap: () => context.push(NamedRoutes.popularList.routeName),
           titleTrailing: SvgPicture.asset(AssetRes.icAiStar),
-        ),*/
+        ),
         SizedBox(
           height: albumWidth + 44,
           child: ListView.separated(
             scrollDirection: .horizontal,
             itemCount: AppData.recentlyPlayed.length,
             separatorBuilder: (_, _) => const SizedBox(width: NumberConstant.albumCardGap),
-            itemBuilder: (context, index) => _buildAlbumCard(context, AppData.recentlyPlayed[index], albumWidth),
+            itemBuilder: (context, index) => StaggeredPressable(
+              index: index,
+              onTap: () => context.push(NamedRoutes.player.routeName),
+              child: _buildAlbumCard(AppData.recentlyPlayed[index], albumWidth),
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget _buildAlbumCard(BuildContext context, AlbumModel album, double width) {
-    return GestureDetector(
-      onTap: () => context.push(NamedRoutes.player.routeName),
-      child: SizedBox(
-        width: width,
-        child: Column(
-          spacing: NumberConstant.albumTitleGap,
-          children: [
-            /*AspectRatio(
-              aspectRatio: NumberConstant.albumAspectRatio,
-              child: HardShadowBox(
-                borderRadius: NumberConstant.albumRadius,
-                clipBehavior: .hardEdge,
-                child: Stack(
-                  fit: .expand,
-                  children: [
-                    //album.cover, fit.cover
-                    Positioned(
-                      right: NumberConstant.albumPlayInset,
-                      bottom: NumberConstant.albumPlayInset,
-                      //icPlayCircleRounded
-                      child: const SizedBox()
-                    ),
-                  ],
-                ),
+  Widget _buildAlbumCard(AlbumModel album, double width) {
+    return SizedBox(
+      width: width,
+      child: Column(
+        spacing: NumberConstant.albumTitleGap,
+        children: [
+          AspectRatio(
+            aspectRatio: NumberConstant.albumAspectRatio,
+            child: HardShadowBox(
+              borderRadius: NumberConstant.albumRadius,
+              clipBehavior: .hardEdge,
+              child: Stack(
+                fit: .expand,
+                children: [
+                  //album.cover, fit.cover
+                  Image.asset(album.cover, fit: .cover,),
+                  Positioned(
+                    right: NumberConstant.albumPlayInset,
+                    bottom: NumberConstant.albumPlayInset,
+                    //icPlayCircleRounded
+                    child: const SizedBox()
+                  ),
+                ],
               ),
-            ),*/
-            //album.title, cardTitle, textAlign.center, maxLines: 2
-          ],
-        ),
+            ),
+          ),
+          //album.title, cardTitle, textAlign.center, maxLines: 2
+          Text(album.title, style: AppTextStyles.cardTitle, maxLines: 2, textAlign: .center,)
+        ],
       ),
     );
   }
@@ -222,14 +233,18 @@ class HomeScreen extends StatelessWidget {
     return Column(
       spacing: NumberConstant.sectionHeaderGap,
       children: [
-        // SectionHeader(title: StringConst.moodsAndGenres, actionLabel: StringConst.viewMore, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
+        SectionHeader(title: StringConst.moodsAndGenres, actionLabel: StringConst.viewMore, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
         SizedBox(
           height: cardWidth,
           child: ListView.separated(
             scrollDirection: .horizontal,
             itemCount: AppData.moodsAndGenres.length,
             separatorBuilder: (_, _) => const SizedBox(width: NumberConstant.moodCardGap),
-            itemBuilder: (context, index) => _buildMoodCard(AppData.moodsAndGenres[index], cardWidth),
+            itemBuilder: (context, index) => StaggeredPressable(
+              index: index,
+              onTap: () => context.push(NamedRoutes.popularList.routeName),
+              child: _buildMoodCard(AppData.moodsAndGenres[index], cardWidth),
+            ),
           ),
         ),
       ],
@@ -237,14 +252,13 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildMoodCard(MoodGenreModel mood, double width) {
-    return SizedBox();
-   /* return SizedBox(
+    return SizedBox(
       width: width,
       child: HardShadowBox(
         borderRadius: NumberConstant.albumRadius,
         clipBehavior: .hardEdge,
         child: Image.asset(mood.cover, fit: .cover, width: width, height: width),
       ),
-    );*/
+    );
   }
 }
