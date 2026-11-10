@@ -78,11 +78,11 @@ class HomeScreen extends StatelessWidget {
               Column(
                 crossAxisAlignment: .start,
                 children: [
-                  Text(StringConst.goodMorning, style: AppTextStyles.homeGreeting),
-                  SvgPicture.asset(AssetRes.morningDivider),
+                  //goodMorning, homeGreeting,
+                  //morningDivider
                 ],
               ),
-              Text(StringConst.letsPlayMusic, style: AppTextStyles.homeSubtitle),
+              //letsPlayMusic, homeSubtitle
             ],
           ),
         ),
@@ -90,8 +90,11 @@ class HomeScreen extends StatelessWidget {
           alignment: .center,
           clipBehavior: .none,
           children: [
-            Positioned(right: -8, top: -10, child: SvgPicture.asset(AssetRes.avatarDots)),
-            ClipOval(child: Image.asset(AssetRes.avatarPeep, width: NumberConstant.avatarSize, height: NumberConstant.avatarSize, fit: .cover)),
+
+            //svg: avatarDots
+            Positioned(right: 28, top: -10, child: const SizedBox()),
+            //profileAvatar, widthHeight: avatarSize, fit.cover
+            ClipOval(child: const SizedBox()),
           ],
         ),
       ],
@@ -99,23 +102,25 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildSearchField() {
-    return HardShadowBox(
+    return SizedBox();
+    /*return HardShadowBox(
       padding: .symmetric(horizontal: NumberConstant.searchFieldPadding, vertical: NumberConstant.searchFieldPadding),
       child: Row(
         spacing: NumberConstant.searchRowGap,
         children: [
-          SvgPicture.asset(AssetRes.icSearch, colorFilter: .mode(AppColors.grayText, .srcIn)),
-          Expanded(child: Text(StringConst.searchHint, style: AppTextStyles.searchHint, maxLines: 1, overflow: .ellipsis)),
+          //icSearch
+          //searchHint, searchHint
+          Expanded(child: const SizedBox()),
         ],
       ),
-    );
+    );*/
   }
 
   Widget _buildStoriesSection(BuildContext context, double storyWidth) {
     return Column(
       spacing: NumberConstant.sectionHeaderGap,
       children: [
-        SectionHeader(title: StringConst.stories, actionLabel: StringConst.viewAll, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
+        // SectionHeader(title: StringConst.stories, actionLabel: StringConst.viewAll, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
         SizedBox(
           height: storyWidth / NumberConstant.storyCardAspectRatio,
           child: ListView.separated(
@@ -130,6 +135,7 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildStoryCard(StoryModel story, double width) {
+    return SizedBox();
     return SizedBox(
       width: width,
       child: HardShadowBox(
@@ -141,11 +147,13 @@ class HomeScreen extends StatelessWidget {
             Stack(
               alignment: .center,
               children: [
-                SvgPicture.asset(AssetRes.icStoryRing),
-                ClipOval(child: Image.asset(story.image, width: NumberConstant.storyImageSize, height: NumberConstant.storyImageSize, fit: .cover)),
+                //icStoryRing,
+                //story.image, widthHeight: storyImageSize, fit.cover
+                ClipOval(child: const SizedBox()),
               ],
             ),
-            Text(story.title, style: AppTextStyles.cardTitle, textAlign: .center, maxLines: 2, overflow: .ellipsis),
+            //story.title, style: cardTitle, textAlign.center
+
           ],
         ),
       ),
@@ -157,12 +165,12 @@ class HomeScreen extends StatelessWidget {
       spacing: NumberConstant.sectionHeaderGap,
       crossAxisAlignment: .start,
       children: [
-        SectionHeader(
+       /* SectionHeader(
           title: StringConst.recentlyPlayed,
           actionLabel: StringConst.viewMore,
           onActionTap: () => context.push(NamedRoutes.popularList.routeName),
           titleTrailing: SvgPicture.asset(AssetRes.icAiStar),
-        ),
+        ),*/
         SizedBox(
           height: albumWidth + 44,
           child: ListView.separated(
@@ -184,8 +192,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           spacing: NumberConstant.albumTitleGap,
           children: [
-
-            AspectRatio(
+            /*AspectRatio(
               aspectRatio: NumberConstant.albumAspectRatio,
               child: HardShadowBox(
                 borderRadius: NumberConstant.albumRadius,
@@ -193,17 +200,18 @@ class HomeScreen extends StatelessWidget {
                 child: Stack(
                   fit: .expand,
                   children: [
-                    Image.asset(album.cover, fit: .cover),
+                    //album.cover, fit.cover
                     Positioned(
                       right: NumberConstant.albumPlayInset,
                       bottom: NumberConstant.albumPlayInset,
-                      child: SvgPicture.asset(AssetRes.icPlayCircle),
+                      //icPlayCircleRounded
+                      child: const SizedBox()
                     ),
                   ],
                 ),
               ),
-            ),
-            Text(album.title, style: AppTextStyles.cardTitle, textAlign: .center, maxLines: 2, overflow: .ellipsis),
+            ),*/
+            //album.title, cardTitle, textAlign.center, maxLines: 2
           ],
         ),
       ),
@@ -214,7 +222,7 @@ class HomeScreen extends StatelessWidget {
     return Column(
       spacing: NumberConstant.sectionHeaderGap,
       children: [
-        SectionHeader(title: StringConst.moodsAndGenres, actionLabel: StringConst.viewMore, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
+        // SectionHeader(title: StringConst.moodsAndGenres, actionLabel: StringConst.viewMore, onActionTap: () => context.push(NamedRoutes.popularList.routeName)),
         SizedBox(
           height: cardWidth,
           child: ListView.separated(
@@ -229,13 +237,14 @@ class HomeScreen extends StatelessWidget {
   }
 
   Widget _buildMoodCard(MoodGenreModel mood, double width) {
-    return SizedBox(
+    return SizedBox();
+   /* return SizedBox(
       width: width,
       child: HardShadowBox(
         borderRadius: NumberConstant.albumRadius,
         clipBehavior: .hardEdge,
         child: Image.asset(mood.cover, fit: .cover, width: width, height: width),
       ),
-    );
+    );*/
   }
 }

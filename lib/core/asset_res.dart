@@ -5,7 +5,7 @@ class AssetRes {
   static const landingPageHeader = '${_imagesPath}landing_page_header.png';
   static const landingIllustration = '${_imagesPath}landing_illustration.png';
   static const scaffoldBgImg = '${_imagesPath}scaffokd_bg_img.jpg';
-  static const avatarPeep = '${_imagesPath}avatar_peep.png';
+  static const profile_avatar = '${_imagesPath}avatar_peep.png';
 
   static const storyTwentyOnePilots = '${_imagesPath}story_twenty_one_pilots.png';
   static const storyArRahman = '${_imagesPath}story_ar_rahman.png';
