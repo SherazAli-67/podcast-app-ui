@@ -117,7 +117,7 @@ class PopularListScreen extends StatelessWidget {
               if (showPlay && !episode.isActive)
                 GestureDetector(
                   onTap: () => context.push(NamedRoutes.player.routeName),
-                  child: SvgPicture.asset(AssetRes.icPlayCircle, colorFilter: .mode(AppColors.darkGrayText, .srcIn)),
+                  child: SvgPicture.asset(AssetRes.icPlaycircleRounded,),
                 ),
               _buildMoreAction(episode.isActive),
             ],
@@ -128,10 +128,8 @@ class PopularListScreen extends StatelessWidget {
   }
 
   Widget _buildMoreAction(bool isActive) {
-    final icon = Transform.rotate(
-      angle: NumberConstant.moreIconRotation,
-      child: SvgPicture.asset(AssetRes.icMore, colorFilter: .mode(AppColors.darkGrayText, .srcIn)),
-    );
+    final icon =  SvgPicture.asset(AssetRes.icMore, colorFilter: .mode(AppColors.darkGrayText, .srcIn));
+
     if (!isActive) return icon;
     return DecoratedBox(
       decoration: BoxDecoration(
