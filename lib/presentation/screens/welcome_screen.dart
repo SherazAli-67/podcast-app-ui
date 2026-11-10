@@ -15,39 +15,118 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DottedScaffoldBackground(
+    return const DottedScaffoldBackground(
       child: Scaffold(
         backgroundColor: AppColors.transparent,
-        body: SafeArea(
+        body: SafeArea(child: _WelcomeEntrance()),
+      ),
+    );
+  }
+}
+
+class _WelcomeEntrance extends StatefulWidget {
+  const _WelcomeEntrance();
+
+  @override
+  State<_WelcomeEntrance> createState() => _WelcomeEntranceState();
+}
+
+class _WelcomeEntranceState extends State<_WelcomeEntrance> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  bool _started = false;
+
+  late final Animation<double> _illustration;
+  late final Animation<double> _headline;
+  late final Animation<double> _button;
+  late final Animation<double> _terms;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: NumberConstant.welcomeEntranceMs),
+    );
+    _illustration = _interval(0.0, 0.45);
+    _headline = _interval(0.22, 0.68);
+    _button = _interval(0.42, 0.88);
+    _terms = _interval(0.58, 1.0);
+  }
+
+  Animation<double> _interval(double begin, double end) {
+    return CurvedAnimation(
+      parent: _controller,
+      curve: Interval(begin, end, curve: Curves.easeOutCubic),
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    if (MediaQuery.disableAnimationsOf(context)) {
+      _controller.value = 1;
+    } else {
+      _controller.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Expanded(
+          child: _fadeSlide(
+            animation: _illustration,
+            child: Image.asset(AssetRes.landingIllustration, fit: .contain, width: double.infinity),
+          ),
+        ),
+        Padding(
+          padding: .fromLTRB(
+            NumberConstant.horizontalPadding,
+            NumberConstant.landingContentTopPadding,
+            NumberConstant.horizontalPadding,
+            NumberConstant.landingTermsBottomPadding,
+          ),
           child: Column(
+            spacing: NumberConstant.sectionGap,
+            crossAxisAlignment: .stretch,
             children: [
-              Expanded(child: Image.asset(AssetRes.landingIllustration, fit: .contain, width: double.infinity)),
-              Padding(
-                padding: .fromLTRB(
-                  NumberConstant.horizontalPadding,
-                  NumberConstant.landingContentTopPadding,
-                  NumberConstant.horizontalPadding,
-                  NumberConstant.landingTermsBottomPadding,
-                ),
-                child: Column(
-                  spacing: NumberConstant.sectionGap,
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    Column(
-                      spacing: NumberConstant.landingContentGap,
-                      crossAxisAlignment: .stretch,
-                      children: [
-                        _buildHeadline(),
-                        _buildSignUpButton(context),
-                      ],
-                    ),
-                    Center(child: Text(StringConst.termsOfUse, style: AppTextStyles.termsLink)),
-                  ],
-                ),
+              Column(
+                spacing: NumberConstant.landingContentGap,
+                crossAxisAlignment: .stretch,
+                children: [
+                  _fadeSlide(animation: _headline, child: _buildHeadline()),
+                  _fadeSlide(animation: _button, child: _buildSignUpButton(context)),
+                ],
+              ),
+              _fadeSlide(
+                animation: _terms,
+                child: Center(child: Text(StringConst.termsOfUse, style: AppTextStyles.termsLink)),
               ),
             ],
           ),
         ),
+      ],
+    );
+  }
+
+  Widget _fadeSlide({required Animation<double> animation, required Widget child}) {
+    return FadeTransition(
+      opacity: animation,
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: const Offset(0, NumberConstant.welcomeSlideOffset),
+          end: Offset.zero,
+        ).animate(animation),
+        child: child,
       ),
     );
   }

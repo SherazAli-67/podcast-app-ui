@@ -76,4 +76,6 @@ class NumberConstant {
   static const homeItemSlideOffset = 12.0;
   static const homePressScale = 0.96;
   static const homePressAnimMs = 100;
+  static const welcomeEntranceMs = 700;
+  static const welcomeSlideOffset = 0.05;
 }

@@ -8,7 +8,7 @@ import 'package:podcast_app_ui/presentation/screens/welcome_screen.dart';
 import 'package:provider/provider.dart';
 
 GoRouter router = GoRouter(
-  initialLocation: NamedRoutes.home.routeName,
+  initialLocation: NamedRoutes.welcome.routeName,
   routes: [
     GoRoute(path: NamedRoutes.welcome.routeName, builder: (ctx, state) => const WelcomeScreen()),
     GoRoute(
