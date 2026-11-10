@@ -10,6 +10,7 @@ import 'package:podcast_app_ui/core/asset_res.dart';
 import 'package:podcast_app_ui/core/models/episode_model.dart';
 import 'package:podcast_app_ui/presentation/widgets/circle_icon_button.dart';
 import 'package:podcast_app_ui/presentation/widgets/dotted_scaffold_background.dart';
+import 'package:podcast_app_ui/presentation/widgets/staggered_pressable.dart';
 import 'package:podcast_app_ui/routing/router.dart';
 
 class PopularListScreen extends StatelessWidget {
@@ -37,7 +38,11 @@ class PopularListScreen extends StatelessWidget {
                     padding: .only(bottom: NumberConstant.listBottomPadding),
                     itemCount: AppData.popularEpisodes.length,
                     separatorBuilder: (_, _) => const SizedBox(height: NumberConstant.episodeRowGap),
-                    itemBuilder: (context, index) => _buildEpisodeRow(context, AppData.popularEpisodes[index], showPlay: index != 0),
+                    itemBuilder: (context, index) => StaggeredPressable(
+                      index: index,
+                      onTap: () => context.push(NamedRoutes.player.routeName),
+                      child: _buildEpisodeRow(AppData.popularEpisodes[index], showPlay: index != 0),
+                    ),
                   ),
                 ),
               ],
@@ -65,65 +70,57 @@ class PopularListScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildEpisodeRow(BuildContext context, EpisodeModel episode, {required bool showPlay}) {
-    return GestureDetector(
-      onTap: () => context.push(NamedRoutes.player.routeName),
-      behavior: .opaque,
-      child: Row(
-        spacing: NumberConstant.episodeContentGap,
-        children: [
-          ClipRRect(
-            borderRadius: .circular(NumberConstant.episodeThumbRadius),
-            child: Image.asset(
-              episode.cover,
-              width: NumberConstant.episodeThumbSize,
-              height: NumberConstant.episodeThumbSize,
-              fit: .cover,
-            ),
+  Widget _buildEpisodeRow(EpisodeModel episode, {required bool showPlay}) {
+    return Row(
+      spacing: NumberConstant.episodeContentGap,
+      children: [
+        ClipRRect(
+          borderRadius: .circular(NumberConstant.episodeThumbRadius),
+          child: Image.asset(
+            episode.cover,
+            width: NumberConstant.episodeThumbSize,
+            height: NumberConstant.episodeThumbSize,
+            fit: .cover,
           ),
-          Expanded(
-            child: Column(
-              spacing: NumberConstant.episodeMetaGap,
-              crossAxisAlignment: .start,
-              children: [
-                Text(episode.title, style: AppTextStyles.episodeTitle, maxLines: 1, overflow: .ellipsis),
-                Row(
-                  spacing: NumberConstant.episodeMetaGap,
-                  children: [
-                    Flexible(
-                      child: Opacity(
-                        opacity: 0.7,
-                        child: Text(episode.author, style: AppTextStyles.episodeMeta, maxLines: 1, overflow: .ellipsis),
-                      ),
-                    ),
-                    Container(
-                      width: NumberConstant.episodeMetaDotSize,
-                      height: NumberConstant.episodeMetaDotSize,
-                      decoration: BoxDecoration(color: AppColors.darkGrayText.withValues(alpha: 0.7), shape: .circle),
-                    ),
-                    Opacity(
-                      opacity: 0.7,
-                      child: Text(episode.episodeLabel, style: AppTextStyles.episodeMeta, maxLines: 1, overflow: .ellipsis),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Row(
-            mainAxisSize: .min,
-            spacing: NumberConstant.episodeActionsGap,
+        ),
+        Expanded(
+          child: Column(
+            spacing: NumberConstant.episodeMetaGap,
+            crossAxisAlignment: .start,
             children: [
-              if (showPlay && !episode.isActive)
-                GestureDetector(
-                  onTap: () => context.push(NamedRoutes.player.routeName),
-                  child: SvgPicture.asset(AssetRes.icPlaycircleRounded,),
-                ),
-              _buildMoreAction(episode.isActive),
+              Text(episode.title, style: AppTextStyles.episodeTitle, maxLines: 1, overflow: .ellipsis),
+              Row(
+                spacing: NumberConstant.episodeMetaGap,
+                children: [
+                  Flexible(
+                    child: Opacity(
+                      opacity: 0.7,
+                      child: Text(episode.author, style: AppTextStyles.episodeMeta, maxLines: 1, overflow: .ellipsis),
+                    ),
+                  ),
+                  Container(
+                    width: NumberConstant.episodeMetaDotSize,
+                    height: NumberConstant.episodeMetaDotSize,
+                    decoration: BoxDecoration(color: AppColors.darkGrayText.withValues(alpha: 0.7), shape: .circle),
+                  ),
+                  Opacity(
+                    opacity: 0.7,
+                    child: Text(episode.episodeLabel, style: AppTextStyles.episodeMeta, maxLines: 1, overflow: .ellipsis),
+                  ),
+                ],
+              ),
             ],
           ),
-        ],
-      ),
+        ),
+        Row(
+          mainAxisSize: .min,
+          spacing: NumberConstant.episodeActionsGap,
+          children: [
+            if (showPlay && !episode.isActive) SvgPicture.asset(AssetRes.icPlaycircleRounded),
+            _buildMoreAction(episode.isActive),
+          ],
+        ),
+      ],
     );
   }
 

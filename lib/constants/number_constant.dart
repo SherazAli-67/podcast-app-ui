@@ -83,7 +83,7 @@ class NumberConstant {
   static const playerFavoriteScale = 1.12;
   static const playerControlAnimMs = 180;
   static const playerPlayScale = 0.94;
-  static const playerAlbumBreatheMs = 2800;
+  static const playerAlbumBreatheMs = 600;
   static const playerAlbumBreatheDelta = 0.03;
   static const playerPauseIconSize = 24.0;
 }

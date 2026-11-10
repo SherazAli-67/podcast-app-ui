@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 class PlayerProvider extends ChangeNotifier {
   bool _isFavorite = false;
-  bool _isPlaying = false;
+  bool _isPlaying = true;
 
   bool get isFavorite => _isFavorite;
 
